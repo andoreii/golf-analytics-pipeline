@@ -1,0 +1,16 @@
+name: 'golf_stats'
+version: '1.0.0'
+config-version: 2
+
+profile: 'golf_stats'
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+
+models:
+  golf_stats:
+    staging:
+      +materialized: view
+    marts:
+      +materialized: table

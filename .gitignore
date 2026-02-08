@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+
+# Data files
+/data/raw/
+/data/processed/
+*.xlsx
+*.csv
+
+# dbt
+/dbt/target/
+/dbt/dbt_packages/
+
+# Env
+.env
+
+# OS
+.DS_Store
