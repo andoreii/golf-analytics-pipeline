@@ -39,6 +39,7 @@ DB_PASSWORD=postgres
 Run all SQL files in `db/migrations/` in order:
 - `001_create_tables.sql`
 - `002_create_tee_holes.sql`
+- `003_add_round_external_id.sql`
 
 ## 6) Configure dbt profile
 Copy `dbt/profiles.yml.example` to `~/.dbt/profiles.yml` and update your username/password.

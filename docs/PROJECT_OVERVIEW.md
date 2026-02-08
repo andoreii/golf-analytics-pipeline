@@ -30,6 +30,7 @@ I wanted a realistic analytics project with a clean data model, repeatable ETL, 
 - Average putts per hole and per round
 - Fairway hit percentage and miss direction
 - GIR (greens in regulation) rate and impact on scoring
+ - Average strokes by hole number across all rounds
 
 ## What I’d add next
 - Automated ingestion from Google Sheets

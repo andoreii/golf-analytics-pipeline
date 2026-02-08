@@ -22,3 +22,10 @@ See `docs/SETUP.md` for installation and setup.
 
 ## Documentation
 See `docs/PROJECT_OVERVIEW.md` for recruiter-facing project details.
+See `docs/EXCEL_TEMPLATE.md` for the Excel tracking template.
+
+## Dashboard
+Start the dashboard:
+```
+streamlit run streamlit_app/app.py
+```

@@ -4,7 +4,5 @@ psycopg==3.2.5
 python-dotenv==1.0.1
 streamlit==1.41.1
 plotly==5.24.1
-
-# dbt core + postgres adapter
-# installed separately to avoid dependency conflicts:
-# pip install dbt-core==1.8.9 dbt-postgres==1.8.9
+dbt-core==1.8.2
+dbt-postgres==1.8.2

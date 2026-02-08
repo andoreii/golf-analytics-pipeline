@@ -1,0 +1,56 @@
+version: 2
+
+models:
+  - name: stg_courses
+    description: "Staging view for courses."
+    columns:
+      - name: course_id
+        tests: [unique, not_null]
+
+  - name: stg_tees
+    description: "Staging view for tees."
+    columns:
+      - name: tee_id
+        tests: [unique, not_null]
+
+  - name: stg_holes
+    description: "Staging view for holes."
+    columns:
+      - name: hole_id
+        tests: [unique, not_null]
+
+  - name: stg_rounds
+    description: "Staging view for rounds."
+    columns:
+      - name: round_id
+        tests: [unique, not_null]
+
+  - name: stg_hole_stats
+    description: "Staging view for hole stats."
+    columns:
+      - name: hole_stat_id
+        tests: [unique, not_null]
+
+  - name: stg_tee_holes
+    description: "Staging view for tee hole yardages."
+    columns:
+      - name: tee_hole_id
+        tests: [unique, not_null]
+
+  - name: fact_rounds
+    description: "Round-level fact table with course and tee attributes."
+    columns:
+      - name: round_id
+        tests: [unique, not_null]
+
+  - name: fact_hole_stats
+    description: "Hole-level fact table with par and yardage joined."
+    columns:
+      - name: hole_stat_id
+        tests: [unique, not_null]
+
+  - name: agg_round_kpis
+    description: "Round KPI summary for dashboard cards and charts."
+    columns:
+      - name: round_id
+        tests: [unique, not_null]
