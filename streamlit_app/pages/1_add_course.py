@@ -37,14 +37,14 @@ with st.form("course_form"):
         notes = st.text_area("Notes", placeholder="Any notes about the course")
 
     st.subheader("Tee Sets")
-    tee_count = st.number_input("Number of tee sets", min_value=1, max_value=6, value=2)
+    tee_count = st.number_input("Number of tee sets", min_value=1, max_value=6, value=3)
 
     tee_rows = pd.DataFrame(
         {
-            "tee_name": ["Blue", "White"][:tee_count] + [""] * max(0, tee_count - 2),
-            "course_rating": [71.2, 69.5][:tee_count] + [None] * max(0, tee_count - 2),
-            "slope_rating": [128, 122][:tee_count] + [None] * max(0, tee_count - 2),
-            "yardage_total": [6900, 6400][:tee_count] + [None] * max(0, tee_count - 2),
+            "tee_name": ["Blue", "White", "Red"][:tee_count] + [""] * max(0, tee_count - 3),
+            "course_rating": [71.2, 69.5, 67.8][:tee_count] + [None] * max(0, tee_count - 3),
+            "slope_rating": [128, 122, 115][:tee_count] + [None] * max(0, tee_count - 3),
+            "yardage_total": [6900, 6400, 5900][:tee_count] + [None] * max(0, tee_count - 3),
         }
     )
 

@@ -1,4 +1,4 @@
-# Excel Template (User-Friendly, Minimal)
+# Excel Template
 
 The template uses two sheets:
 
@@ -31,7 +31,12 @@ Columns:
 - `bunker_found`
 
 ## One file per round
-Save each round as its own Excel file in `data/raw/` using the same two sheets.\n\nSuggested naming:\n- `YYYY-MM-DD_course.xlsx` (example: `2026-02-08_pine_valley.xlsx`)\n\n## How to generate the template
+Save each round as its own Excel file in `data/raw/` using the same two sheets.
+
+Suggested naming:
+- `YYYY-MM-DD_course.xlsx` (example: `2026-02-08_pine_valley.xlsx`)
+
+## How to generate the template
 Run:
 ```
 python scripts/create_excel_template.py
@@ -44,3 +49,48 @@ The template includes:
 - dropdown lists for allowed values
 - clean column widths
 - a single example row per sheet
+
+---
+
+# Course Import Template
+
+Use this if you want to import a full course setup (course + tees + holes + yardages) from one Excel file.
+
+## Sheets
+
+### 1) course (single row)
+- `course_name`
+- `location`
+- `notes`
+
+### 2) tees
+- `tee_name`
+- `course_rating`
+- `slope_rating`
+- `yardage_total`
+
+### 3) holes
+- `hole_number`
+- `par`
+
+### 4) tee_holes
+- `tee_name`
+- `hole_number`
+- `yardage`
+
+## Generate the template
+Run:
+```
+python scripts/create_course_import_template.py
+```
+This creates:
+- `templates/course_import_template.xlsx`
+
+## Import the course
+Save each course as its own file in `data/raw/` using this pattern:
+- `course_<short_name>.xlsx` (example: `course_pine_valley.xlsx`)
+
+Then run:
+```
+python scripts/import_course_excel.py
+```

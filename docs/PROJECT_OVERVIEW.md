@@ -1,10 +1,10 @@
 # Project Overview — Golf Statistics ETL + Analytics
 
 ## One‑line summary
-A full end‑to‑end data pipeline that captures personal golf stats from Excel, loads them into PostgreSQL, transforms them with dbt, and delivers interactive analytics in Streamlit.
+An end‑to‑end pipeline I built for my own golf stats: Excel tracking → PostgreSQL → dbt models → Streamlit analytics.
 
 ## Why this project exists
-I wanted a realistic analytics project with a clean data model, repeatable ETL, and a dashboard that answers real performance questions. Golf provides structured events (rounds and holes) with rich metrics, making it a perfect domain for analytics.
+I wanted a simple, personal system that makes me a better golfer. That meant a clean data model, repeatable ETL, and a dashboard that answers the questions I actually ask after a round.
 
 ## Tech stack (100% free)
 - PostgreSQL: relational database for raw and modeled data
@@ -19,20 +19,20 @@ I wanted a realistic analytics project with a clean data model, repeatable ETL, 
 4. Streamlit dashboard visualizes KPIs and trends
 5. Streamlit mini form inserts new courses, tee sets, and hole yardages
 
-## Highlights and resume value
-- Star schema design for golf analytics (courses, tees, holes, rounds, and hole-level facts)
-- Data validation and cleaning in the ETL layer
-- dbt models with tests and documentation
-- KPI dashboard for scoring, accuracy, and trend analysis
+## Highlights
+- Clean relational model for courses, tees, holes, rounds, and hole stats
+- ETL with validation so bad data doesn’t sneak in
+- dbt models for consistent metrics
+- Dashboard for scoring, accuracy, and trend analysis
 
-## Example questions the dashboard answers
+## Example analytics
 - Scoring trends by course and tee
 - Average putts per hole and per round
 - Fairway hit percentage and miss direction
 - GIR (greens in regulation) rate and impact on scoring
  - Average strokes by hole number across all rounds
 
-## What I’d add next
-- Automated ingestion from Google Sheets
-- Weather data enrichment by round date and location
-- Shot‑level tracking (if using a GPS device)
+## add next
+- Optional Google Sheets ingestion
+- Weather enrichment by round date and location
+- Shot‑level tracking from a GPS device

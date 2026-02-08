@@ -13,6 +13,7 @@ __pycache__/
 # dbt
 /dbt/target/
 /dbt/dbt_packages/
+/dbt/logs/
 
 # Env
 .env
