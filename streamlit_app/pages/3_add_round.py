@@ -103,6 +103,7 @@ hole_rows = {
     "tee_club": [None] * len(hole_numbers),
     "approach_club": [None] * len(hole_numbers),
     "bunker_found": [0] * len(hole_numbers),
+    "out_of_bounds_count": [0] * len(hole_numbers),
 }
 
 st.subheader("Hole Stats")
@@ -122,6 +123,7 @@ holes_df = st.data_editor(
             "Approach",
             options=["Green", "Left", "Right", "Short", "Long"],
         ),
+        "out_of_bounds_count": st.column_config.NumberColumn("OB"),
     },
 )
 
@@ -176,9 +178,9 @@ if save_round:
                     insert into hole_stats (
                         round_id, hole_number, strokes, putts,
                         tee_shot, approach, tee_club, approach_club,
-                        bunker_found
+                        bunker_found, out_of_bounds_count
                     )
-                    values (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+                    values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                     """,
                     (
                         round_id,
@@ -190,6 +192,7 @@ if save_round:
                         row.get("tee_club"),
                         row.get("approach_club"),
                         int(row.get("bunker_found") or 0),
+                        int(row.get("out_of_bounds_count") or 0),
                     ),
                 )
 

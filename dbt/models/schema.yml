@@ -30,6 +30,8 @@ models:
     columns:
       - name: hole_stat_id
         tests: [unique, not_null]
+      - name: out_of_bounds_count
+        description: "Number of out-of-bounds balls on the hole."
 
   - name: stg_tee_holes
     description: "Staging view for tee hole yardages."
@@ -48,9 +50,13 @@ models:
     columns:
       - name: hole_stat_id
         tests: [unique, not_null]
+      - name: out_of_bounds_count
+        description: "Number of out-of-bounds balls on the hole."
 
   - name: agg_round_kpis
     description: "Round KPI summary for dashboard cards and charts."
     columns:
       - name: round_id
         tests: [unique, not_null]
+      - name: out_of_bounds_total
+        description: "Total out-of-bounds balls in the round."

@@ -14,7 +14,8 @@ select
   hs.approach,
   hs.tee_club,
   hs.approach_club,
-  hs.bunker_found
+  hs.bunker_found,
+  hs.out_of_bounds_count
 from {{ ref('stg_hole_stats') }} hs
 join {{ ref('stg_rounds') }} r on hs.round_id = r.round_id
 left join {{ ref('stg_holes') }} h

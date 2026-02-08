@@ -101,6 +101,7 @@ def build_hole_stats_sheet(wb: Workbook) -> None:
         "tee_club",
         "approach_club",
         "bunker_found",
+        "out_of_bounds_count",
     ]
 
     style_header(ws, headers)
@@ -133,6 +134,7 @@ def build_hole_stats_sheet(wb: Workbook) -> None:
             "Green",
             "Driver",
             "7i",
+            0,
             0,
         ]
     )

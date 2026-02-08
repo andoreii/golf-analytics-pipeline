@@ -8,5 +8,6 @@ select
   approach,
   tee_club,
   approach_club,
-  bunker_found
+  bunker_found,
+  out_of_bounds_count
 from hole_stats

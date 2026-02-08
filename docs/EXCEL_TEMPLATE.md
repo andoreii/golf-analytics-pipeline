@@ -29,6 +29,7 @@ Columns:
 - `tee_club`
 - `approach_club`
 - `bunker_found`
+- `out_of_bounds_count`
 
 ## One file per round
 Save each round as its own Excel file in `data/raw/` using the same two sheets.

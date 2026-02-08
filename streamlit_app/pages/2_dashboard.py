@@ -48,6 +48,7 @@ if kpis.empty:
     st.stop()
 
 # Filters
+kpis["date_played"] = pd.to_datetime(kpis["date_played"]).dt.date
 min_date = kpis["date_played"].min()
 max_date = kpis["date_played"].max()
 
@@ -69,8 +70,8 @@ with col3:
 start_date, end_date = date_range
 
 filtered = kpis[
-    (kpis["date_played"] >= pd.to_datetime(start_date))
-    & (kpis["date_played"] <= pd.to_datetime(end_date))
+    (kpis["date_played"] >= start_date)
+    & (kpis["date_played"] <= end_date)
 ]
 if course_choice != "All":
     filtered = filtered[filtered["course_name"] == course_choice]
@@ -97,6 +98,9 @@ c1.metric("Avg Strokes", f"{avg_score:.1f}")
 c2.metric("Avg Putts/Hole", f"{avg_putts:.2f}")
 c3.metric("Fairway %", f"{fairway_pct:.0%}")
 c4.metric("GIR %", f"{gir_pct:.0%}")
+
+if "out_of_bounds_total" in filtered.columns:
+    st.caption(f"Out-of-bounds (total): {int(filtered['out_of_bounds_total'].sum())}")
 
 st.divider()
 

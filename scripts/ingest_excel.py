@@ -172,9 +172,9 @@ def main() -> None:
                         INSERT INTO hole_stats (
                             round_id, hole_number, strokes, putts,
                             tee_shot, approach, tee_club, approach_club,
-                            bunker_found
+                            bunker_found, out_of_bounds_count
                         )
-                        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+                        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                         """,
                         (
                             round_id,
@@ -186,6 +186,7 @@ def main() -> None:
                             row.get("tee_club"),
                             row.get("approach_club"),
                             int(row.get("bunker_found") or 0),
+                            int(row.get("out_of_bounds_count") or 0),
                         ),
                     )
 

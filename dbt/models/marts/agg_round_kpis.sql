@@ -9,7 +9,8 @@ select
   sum(hs.putts) as total_putts,
   avg(hs.putts::numeric) as avg_putts_per_hole,
   sum(case when hs.tee_shot = 'Fairway' then 1 else 0 end) as fairways_hit,
-  sum(case when hs.approach = 'Green' then 1 else 0 end) as greens_in_reg
+  sum(case when hs.approach = 'Green' then 1 else 0 end) as greens_in_reg,
+  sum(hs.out_of_bounds_count) as out_of_bounds_total
 from {{ ref('fact_rounds') }} r
 join {{ ref('fact_hole_stats') }} hs on r.round_id = hs.round_id
 group by 1,2,3,4,5
