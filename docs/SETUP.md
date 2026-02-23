@@ -37,6 +37,7 @@ Run the SQL in `db/migrations/` in order:
 - `002_create_tee_holes.sql`
 - `003_add_round_external_id.sql`
 - `004_add_out_of_bounds.sql`
+- `005_expand_shot_outcomes.sql`
 
 ## 6) dbt profile
 Copy `dbt/profiles.yml.example` to `~/.dbt/profiles.yml` and update creds if needed.

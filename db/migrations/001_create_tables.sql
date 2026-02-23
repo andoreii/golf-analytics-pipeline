@@ -67,8 +67,22 @@ CREATE TABLE IF NOT EXISTS hole_stats (
   hole_number   INT NOT NULL CHECK (hole_number BETWEEN 1 AND 18),
   strokes       INT NOT NULL CHECK (strokes BETWEEN 1 AND 15),
   putts         INT NOT NULL CHECK (putts BETWEEN 0 AND 6),
-  tee_shot      TEXT CHECK (tee_shot IN ('Fairway', 'Left', 'Right', 'Short', 'Long')),
-  approach      TEXT CHECK (approach IN ('Green', 'Left', 'Right', 'Short', 'Long')),
+  tee_shot      TEXT CHECK (
+    tee_shot IN (
+      'Fairway', 'Left', 'Right', 'Short', 'Long',
+      'Out Left', 'Out Right', 'Out Short', 'Out Long',
+      'Bunker Left', 'Bunker Right', 'Bunker Short', 'Bunker Long',
+      'Green'
+    )
+  ),
+  approach      TEXT CHECK (
+    approach IN (
+      'Green', 'Left', 'Right', 'Short', 'Long',
+      'Out Left', 'Out Right', 'Out Short', 'Out Long',
+      'Bunker Left', 'Bunker Right', 'Bunker Short', 'Bunker Long',
+      'N/A'
+    )
+  ),
   tee_club      TEXT,
   approach_club TEXT,
   bunker_found  INT NOT NULL DEFAULT 0 CHECK (bunker_found BETWEEN 0 AND 3)

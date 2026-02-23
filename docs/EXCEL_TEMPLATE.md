@@ -24,8 +24,8 @@ Columns:
 - `hole_number` (1-18)
 - `strokes`
 - `putts`
-- `tee_shot` (Fairway, Left, Right, Short, Long)
-- `approach` (Green, Left, Right, Short, Long)
+- `tee_shot` (Fairway, Left, Right, Short, Long, Out Left/Right/Short/Long, Bunker Left/Right/Short/Long, Green)
+- `approach` (Green, Left, Right, Short, Long, Out Left/Right/Short/Long, Bunker Left/Right/Short/Long, N/A)
 - `tee_club`
 - `approach_club`
 - `bunker_found`

@@ -13,8 +13,38 @@ from dotenv import load_dotenv
 ALLOWED_HOLES_PLAYED = {"Front 9", "Back 9", "18"}
 ALLOWED_ROUND_TYPE = {"Practice", "Tournament", "Casual"}
 ALLOWED_ROUND_FORMAT = {"Stroke", "Match", "Scramble", "Other"}
-ALLOWED_TEE_SHOT = {"Fairway", "Left", "Right", "Short", "Long"}
-ALLOWED_APPROACH = {"Green", "Left", "Right", "Short", "Long"}
+ALLOWED_TEE_SHOT = {
+    "Fairway",
+    "Left",
+    "Right",
+    "Short",
+    "Long",
+    "Out Left",
+    "Out Right",
+    "Out Short",
+    "Out Long",
+    "Bunker Left",
+    "Bunker Right",
+    "Bunker Short",
+    "Bunker Long",
+    "Green",
+}
+ALLOWED_APPROACH = {
+    "Green",
+    "Left",
+    "Right",
+    "Short",
+    "Long",
+    "Out Left",
+    "Out Right",
+    "Out Short",
+    "Out Long",
+    "Bunker Left",
+    "Bunker Right",
+    "Bunker Short",
+    "Bunker Long",
+    "N/A",
+}
 
 REQUIRED_ROUNDS_COLS = {
     "round_external_id",

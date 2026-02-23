@@ -61,6 +61,10 @@ streamlit run streamlit_app/app.py
    cd dbt
    dbt run
    ```
+7. Generate Excel template
+   ```
+   python scripts/create_excel_template.py
+   ```
 8. Start Streamlit
    ```
    streamlit run streamlit_app/app.py
