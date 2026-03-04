@@ -86,6 +86,9 @@ def validate_rounds(rounds_df: pd.DataFrame) -> None:
         raise ValueError("rounds sheet must contain exactly 1 row per file.")
 
     row = rounds_df.iloc[0]
+    round_external_id = str(row["round_external_id"]).strip()
+    if not round_external_id:
+        raise ValueError("rounds: round_external_id is required.")
     if row["holes_played"] not in ALLOWED_HOLES_PLAYED:
         raise ValueError("Invalid holes_played value.")
     if row["round_type"] not in ALLOWED_ROUND_TYPE:
@@ -96,6 +99,8 @@ def validate_rounds(rounds_df: pd.DataFrame) -> None:
 
 def validate_holes(holes_df: pd.DataFrame) -> None:
     ensure_columns(holes_df, REQUIRED_HOLE_COLS, "hole_stats")
+    if holes_df.empty:
+        raise ValueError("hole_stats: at least one hole row is required.")
     if holes_df["hole_number"].isna().any():
         raise ValueError("hole_stats: hole_number cannot be empty.")
     if holes_df["strokes"].isna().any():
@@ -113,11 +118,41 @@ def validate_holes(holes_df: pd.DataFrame) -> None:
             raise ValueError("hole_stats: invalid approach value.")
 
 
+def validate_round_alignment(rounds_df: pd.DataFrame, holes_df: pd.DataFrame) -> None:
+    round_row = rounds_df.iloc[0]
+    round_external_id = str(round_row["round_external_id"]).strip()
+    hole_round_ids = holes_df["round_external_id"].fillna("").astype(str).str.strip()
+
+    if (hole_round_ids == "").any():
+        raise ValueError("hole_stats: round_external_id cannot be empty.")
+    if not hole_round_ids.eq(round_external_id).all():
+        raise ValueError("hole_stats: every row must match rounds.round_external_id.")
+
+    hole_numbers = holes_df["hole_number"].astype(int)
+    if hole_numbers.duplicated().any():
+        raise ValueError("hole_stats: hole_number must be unique within a round.")
+
+    expected_holes = {
+        "18": set(range(1, 19)),
+        "Front 9": set(range(1, 10)),
+        "Back 9": set(range(10, 19)),
+    }[round_row["holes_played"]]
+    actual_holes = set(hole_numbers.tolist())
+    if actual_holes != expected_holes:
+        raise ValueError(
+            "hole_stats: hole_number values do not match the selected holes_played."
+        )
+
+
 def main() -> None:
     load_dotenv()
 
     input_dir = Path("data/raw")
-    files = sorted(input_dir.glob("*.xlsx"))
+    files = sorted(
+        path
+        for path in input_dir.glob("*.xlsx")
+        if not path.name.startswith("course_")
+    )
     if not files:
         raise FileNotFoundError("No Excel files found in data/raw/.")
 
@@ -129,6 +164,7 @@ def main() -> None:
 
             validate_rounds(rounds_df)
             validate_holes(holes_df)
+            validate_round_alignment(rounds_df, holes_df)
 
             round_row = rounds_df.iloc[0]
             round_external_id = str(round_row["round_external_id"]).strip()
