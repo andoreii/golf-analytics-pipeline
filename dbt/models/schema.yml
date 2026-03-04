@@ -6,30 +6,134 @@ models:
     columns:
       - name: course_id
         tests: [unique, not_null]
+      - name: course_name
+        tests: [not_null]
 
   - name: stg_tees
     description: "Staging view for tees."
     columns:
       - name: tee_id
         tests: [unique, not_null]
+      - name: course_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_courses')
+              field: course_id
+      - name: tee_name
+        tests: [not_null]
 
   - name: stg_holes
     description: "Staging view for holes."
     columns:
       - name: hole_id
         tests: [unique, not_null]
+      - name: course_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_courses')
+              field: course_id
+      - name: hole_number
+        tests: [not_null]
+      - name: par
+        tests:
+          - not_null
+          - accepted_values:
+              values: [3, 4, 5]
+              quote: false
 
   - name: stg_rounds
     description: "Staging view for rounds."
     columns:
       - name: round_id
         tests: [unique, not_null]
+      - name: round_external_id
+        tests: [unique]
+      - name: course_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_courses')
+              field: course_id
+      - name: tee_id
+        tests:
+          - relationships:
+              to: ref('stg_tees')
+              field: tee_id
+      - name: holes_played
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Front 9', 'Back 9', '18']
+      - name: round_type
+        tests:
+          - accepted_values:
+              values: ['Practice', 'Tournament', 'Casual']
+      - name: round_format
+        tests:
+          - accepted_values:
+              values: ['Stroke', 'Match', 'Scramble', 'Other']
 
   - name: stg_hole_stats
     description: "Staging view for hole stats."
     columns:
       - name: hole_stat_id
         tests: [unique, not_null]
+      - name: round_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_rounds')
+              field: round_id
+      - name: hole_number
+        tests: [not_null]
+      - name: strokes
+        tests: [not_null]
+      - name: putts
+        tests: [not_null]
+      - name: tee_shot
+        tests:
+          - accepted_values:
+              values:
+                - Fairway
+                - Left
+                - Right
+                - Short
+                - Long
+                - Out Left
+                - Out Right
+                - Out Short
+                - Out Long
+                - Bunker Left
+                - Bunker Right
+                - Bunker Short
+                - Bunker Long
+                - Green
+              quote: true
+              config:
+                where: "tee_shot is not null"
+      - name: approach
+        tests:
+          - accepted_values:
+              values:
+                - Green
+                - Left
+                - Right
+                - Short
+                - Long
+                - Out Left
+                - Out Right
+                - Out Short
+                - Out Long
+                - Bunker Left
+                - Bunker Right
+                - Bunker Short
+                - Bunker Long
+                - N/A
+              quote: true
+              config:
+                where: "approach is not null"
       - name: out_of_bounds_count
         description: "Number of out-of-bounds balls on the hole."
 
@@ -38,6 +142,16 @@ models:
     columns:
       - name: tee_hole_id
         tests: [unique, not_null]
+      - name: tee_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_tees')
+              field: tee_id
+      - name: hole_number
+        tests: [not_null]
+      - name: yardage
+        tests: [not_null]
 
   - name: fact_rounds
     description: "Round-level fact table with course and tee attributes."
