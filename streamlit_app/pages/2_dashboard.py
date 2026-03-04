@@ -128,10 +128,7 @@ st.divider()
 
 # Hole-level breakdown
 holes_filtered = holes.copy()
-if course_choice != "All":
-    holes_filtered = holes_filtered[holes_filtered["course_id"].isin(
-        filtered["course_id"].unique()
-    )]
+holes_filtered = holes_filtered[holes_filtered["round_id"].isin(filtered["round_id"].unique())]
 
 hole_summary = (
     holes_filtered.groupby("hole_number")
