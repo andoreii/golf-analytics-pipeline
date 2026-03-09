@@ -100,6 +100,14 @@ if submitted:
 
     with get_conn() as conn:
         with conn.cursor() as cur:
+            cur.execute(
+                "select 1 from courses where course_name = %s",
+                (course_name.strip(),),
+            )
+            if cur.fetchone():
+                st.error("A course with that name already exists.")
+                st.stop()
+
             # Insert course
             cur.execute(
                 """
