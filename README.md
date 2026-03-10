@@ -44,6 +44,9 @@ streamlit run streamlit_app/app.py
    PGPASSWORD=postgres psql -h localhost -p 5432 -U postgres -d golf_stats -c "\\i db/migrations/001_create_tables.sql"
    PGPASSWORD=postgres psql -h localhost -p 5432 -U postgres -d golf_stats -c "\\i db/migrations/002_create_tee_holes.sql"
    PGPASSWORD=postgres psql -h localhost -p 5432 -U postgres -d golf_stats -c "\\i db/migrations/003_add_round_external_id.sql"
+   PGPASSWORD=postgres psql -h localhost -p 5432 -U postgres -d golf_stats -c "\\i db/migrations/004_add_out_of_bounds.sql"
+   PGPASSWORD=postgres psql -h localhost -p 5432 -U postgres -d golf_stats -c "\\i db/migrations/005_expand_shot_outcomes.sql"
+   PGPASSWORD=postgres psql -h localhost -p 5432 -U postgres -d golf_stats -c "\\i db/migrations/006_add_unique_course_constraints.sql"
    ```
 4. Install Python dependencies
    ```
