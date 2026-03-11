@@ -95,3 +95,5 @@ Then run:
 ```
 python scripts/import_course_excel.py
 ```
+
+Round ingestion ignores files named `course_*.xlsx`, so course imports and round imports can safely share `data/raw/`.
